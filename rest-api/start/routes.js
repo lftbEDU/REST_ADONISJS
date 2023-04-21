@@ -17,5 +17,12 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return { greeting: 'Hello world in JSON lftb' }
 })
+
+Route.group( () => {
+  Route.post('usuarios/registro','UsuarioController.store')
+  Route.post('usuarios/login','UsuarioController.login')
+  Route.get('proyectos','ProyectoController.index').middleware('auth')
+  Route.post('proyectos','ProyectoController.create').middleware('auth')
+}).prefix('api/v1')
